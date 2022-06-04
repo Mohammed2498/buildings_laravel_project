@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\BuildingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.dashboard.app');
 });
+Route::group(
+    [
+        'prefix' => 'dashboard'
+    ],
+    function () {
+        Route::resource('buildings', BuildingController::class);
+    }
+);

@@ -1,0 +1,5 @@
+@extends('layouts.dashboard.app')
+@section('page_title','الأبراج')
+@section('content')
+@include('buildings.partials.form')
+@endsection('content')
