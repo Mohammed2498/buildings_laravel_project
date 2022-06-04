@@ -48,7 +48,7 @@ class BuildingController extends Controller
         $request->validate($this->rules());
         $image = $request->file('image');
         $data = $request->all();
-        if ($image->isValid()) {
+        if ($request->hasFile('image')) {
             $image_url = $image->store('buildings', 'public');
             $data['image'] = $image_url;
         }

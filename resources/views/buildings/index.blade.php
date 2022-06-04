@@ -4,7 +4,11 @@
 
     <div class="card-body">
         <h6 class="card-subtitle">جدول الأبراج السكنية في قطاع غزة</h6>
-
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <div class="table-responsive">
             <table id="datatable-buttons" class="table table-striped table-bordered">
                 <thead>
