@@ -75,9 +75,10 @@ class BuildingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Building $building)
     {
         //
+        return view('buildings.edit', ['building' => $building]);
     }
 
     /**
@@ -87,9 +88,20 @@ class BuildingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Building $building)
     {
         //
+        $request->validate($this->rules());
+        $image = $request->file('image');
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $image_url = $image->store('buildings', 'public');
+            $data['image'] = $image_url;
+            Storage::disk('public')->delete($building->image);
+        }
+        $building->update($data);
+        return redirect()->route('buildings.index')
+            ->with('success', 'تمت الاضافة بنجاح');
     }
 
     /**

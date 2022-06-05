@@ -22,8 +22,8 @@
                         <th> الأمر</th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach ($buildings as $building)
-                    <tbody>
                         <tr>
                             <td>{{ $building->id }}</td>
                             <td>{{ $building->name }}</td>
@@ -37,6 +37,7 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{ route('buildings.edit', $building->id) }}" class="btn btn-primary">تعديل</a>
                                 <form action="{{ route('buildings.destroy', $building->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -44,8 +45,8 @@
                                 </form>
                             </td>
                         </tr>
-                    </tbody>
                 @endforeach
+            </tbody>
             </table>
         </div>
     </div>
