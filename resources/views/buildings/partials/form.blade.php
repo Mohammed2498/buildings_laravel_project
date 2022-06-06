@@ -4,10 +4,16 @@
             <h5 class="card-title">اضافة برج سكني</h5>
         </div>
         <div class="card-body">
+
             <label for="name">الاسم</label>
             <div class="form-group mb-0">
                 <input value="{{ old('name', $building->name ?? '') }}" name="name" type="text" class="form-control"
                     name="inputText" id="inputText" placeholder="اسم البرج السكني">
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -40,7 +46,6 @@
                     placeholder="عدد الشقق">
             </div>
         </div>
-
         <!-- End col -->
     </div>
 </div>

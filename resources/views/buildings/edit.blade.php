@@ -11,7 +11,6 @@
                     <div class="form-group mb-0">
                         <button class="btn btn-primary" type="submit"> تعديل</button>
                         <a href="{{ url('/dashboard/buildings') }}" class="btn btn-secondary">رجوع</a>
-
                     </div>
                 </div>
             </form>

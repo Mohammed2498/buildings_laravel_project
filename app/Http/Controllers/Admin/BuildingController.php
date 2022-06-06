@@ -17,7 +17,7 @@ class BuildingController extends Controller
     public function index()
     {
         //
-        $buildings = Building::all();
+        $buildings = Building::paginate(4,'*','p');
         return view('buildings.index', ['buildings' => $buildings]);
     }
 
@@ -101,7 +101,7 @@ class BuildingController extends Controller
         }
         $building->update($data);
         return redirect()->route('buildings.index')
-            ->with('success', 'تمت الاضافة بنجاح');
+            ->with('success', 'تم التعديل بنجاح');
     }
 
     /**
@@ -124,6 +124,7 @@ class BuildingController extends Controller
     {
         return [
             'image' => ['nullable'],
+            'name' => ['required']
         ];
     }
 }

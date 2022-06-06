@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($buildings as $building)
+                    @foreach ($buildings as $building)
                         <tr>
                             <td>{{ $building->id }}</td>
                             <td>{{ $building->name }}</td>
@@ -41,13 +41,14 @@
                                 <form action="{{ route('buildings.destroy', $building->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"> حذف</button>
+                                    <button class="btn btn-danger" style="margin-top: 8px" type="submit"> حذف</button>
                                 </form>
                             </td>
                         </tr>
-                @endforeach
-            </tbody>
+                    @endforeach
+                </tbody>
             </table>
+            {{ $buildings->links() }}
         </div>
     </div>
 @endsection('content')
