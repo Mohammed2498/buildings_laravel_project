@@ -197,10 +197,10 @@
                                     <li><a href="index.html"><img
                                                 src="{{ asset('assets/dashboard/images/svg-icon/dashboard.svg') }}"
                                                 class="img-fluid" alt="dashboard">لوحة التحكم</a></li>
-                                    <li><a href="crm-projects.html"><img
+                                    <li><a href="{{ route('buildings.index') }}"><img
                                                 src="{{ asset('assets/dashboard/images/svg-icon/reports.svg') }}"
                                                 class="img-fluid" alt="projects">العمارات السكنية</a></li>
-                                    <li><a href="crm-lead-status.html"><img
+                                    <li><a href="{{ route('apartments.index') }}"><img
                                                 src="{{ asset('assets/dashboard/images/svg-icon/charts.svg') }}"
                                                 class="img-fluid" alt="leads">الشقق</a></li>
                                     <li><a href="crm-clients.html"><img
@@ -709,25 +709,19 @@
                     </div>
                     <div class="col-md-4 col-lg-4">
                         <div class="widgetbar">
-                            <a href="{{ route('buildings.create') }}">
-                            <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i> اضافة برج
-                                سكني</button></a>
+                            @yield('action')
                         </div>
                     </div>
-                    
                 </div>
             </div>
             <!-- End Breadcrumbbar -->
             <!-- Start Contentbar -->
             <div class="contentbar">
                 <!-- Start row -->
-
                 <!-- End row -->
                 @yield('content')
                 <!-- Start row -->
-
                 <!-- End row -->
-
             </div>
             <!-- End Contentbar -->
             <!-- Start Footerbar -->

@@ -17,7 +17,7 @@ class BuildingController extends Controller
     public function index()
     {
         //
-        $buildings = Building::paginate(4,'*','p');
+        $buildings = Building::paginate(4, '*', 'p');
         return view('buildings.index', ['buildings' => $buildings]);
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BuildingController;
 /*
@@ -22,5 +23,14 @@ Route::group(
     ],
     function () {
         Route::resource('buildings', BuildingController::class);
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'dashboard'
+    ],
+    function () {
+        Route::resource('apartments', ApartmentController::class);
     }
 );

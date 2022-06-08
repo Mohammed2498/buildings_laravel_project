@@ -1,6 +1,7 @@
 @extends('layouts.dashboard.app')
 @section('page_title', 'التعديل')
 @section('content')
+
     <div class="col-lg-10">
         <div class="card m-b-30">
             <form method="POST" action="{{ route('buildings.update', $building->id) }}" enctype="multipart/form-data">
