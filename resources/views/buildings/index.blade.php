@@ -31,7 +31,7 @@
                 @foreach ($buildings as $building)
                     <tr>
                         <td>{{ $building->id }}</td>
-                        <td>{{ $building->name }}</td>
+                        <td><a href="{{ route('buildings.show', $building->id) }}">{{ $building->name }}</a></td>
                         <td>{{ $building->description }}</td>
                         <td>{{ $building->apartments_number }}</td>
                         <td>{{ $building->address }}</td>

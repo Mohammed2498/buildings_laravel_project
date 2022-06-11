@@ -10,4 +10,9 @@ class Apartment extends Model
 
     protected $table = 'apartments';
     protected $fillable = ['owner', 'building_id', 'number'];
+
+    public function building()
+    {
+        return $this->BelongsTo(Building::class, 'building_id', 'id');
+    }
 }

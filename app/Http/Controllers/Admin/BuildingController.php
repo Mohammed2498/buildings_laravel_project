@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Building;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -64,9 +65,12 @@ class BuildingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Building $building)
     {
-        //
+        $apartments = $building->apartments;
+        return view('buildings.show', [
+            'building' => $building, 'apartments' => $apartments
+        ]);
     }
 
     /**
@@ -78,6 +82,7 @@ class BuildingController extends Controller
     public function edit(Building $building)
     {
         //
+        
         return view('buildings.edit', ['building' => $building]);
     }
 
@@ -112,10 +117,14 @@ class BuildingController extends Controller
      */
     public function destroy(Building $building)
     {
+        if (isset($building->image)) {
+            Storage::disk('public')->delete($building->image);
+        }
+        $building->delete();
         //
         //$building = Building::findOrFail($id);
-        $building->delete();
-        Storage::disk('public')->delete($building->image);
+
+
         return redirect()->route('buildings.index')
             ->with('success', 'تم الحذف بنجاح');
     }

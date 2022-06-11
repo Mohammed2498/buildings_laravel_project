@@ -1,9 +1,9 @@
 @extends('layouts.dashboard.app')
 @section('page_title', 'الشقق السكنية')
 @section('action')
-    <a href="{{ route('apartments.create') }}">
-        <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>اضافة شقة
-            سكنية</button>
+    <a href="{{ route('buildings.create') }}">
+        <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>اضافة برج سكني
+        </button>
     </a>
 @endsection
 @section('content')
@@ -31,7 +31,7 @@
                             <td>{{ $apartment->id }}</td>
                             <td>{{ $apartment->number }}</td>
                             <td>{{ $apartment->owner }}</td>
-                            <td>{{ $apartment->building_name }}</td>
+                            <td>{{ $apartment->building->name }}</td>
                             <td>
                                 <a href="{{ route('apartments.edit', $apartment->id) }}" class="btn btn-primary">تعديل</a>
                                 <form action="{{ route('apartments.destroy', $apartment->id) }}" method="POST">

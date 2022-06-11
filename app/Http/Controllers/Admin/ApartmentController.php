@@ -79,9 +79,14 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Apartment $apartment)
     {
         //
+        $buildings = Building::all();
+        return view('apartments.edit', [
+            'apartment' => $apartment,
+            'buildings' => $buildings
+        ]);
     }
 
     /**
@@ -91,9 +96,11 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $data = $request->all();
+        $apartment->update($data);
+        return redirect()->route('apartments.index')->with('done', 'تمت الاضافة بنجاح');
     }
 
     /**
@@ -102,8 +109,9 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->back()->with('done', 'تم الحذف بنجاح');
     }
 }
