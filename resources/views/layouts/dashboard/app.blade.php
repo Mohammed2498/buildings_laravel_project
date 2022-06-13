@@ -655,7 +655,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                                     src="{{ asset('assets/dashboard/images/users/profile.svg') }}"
                                                     class="img-fluid" alt="profile"><span
-                                                    class="live-icon">John Doe</span><span
+                                                    class="live-icon">{{ Auth::user()->name }}</span><span
                                                     class="feather icon-chevron-down live-icon"></span></a>
                                             <div class="dropdown-menu" aria-labelledby="profilelink">
                                                 <div class="dropdown-item">

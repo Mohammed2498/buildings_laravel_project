@@ -18,12 +18,14 @@ class ApartmentController extends Controller
     public function index()
     {
 
-        $apartments = Apartment::leftJoin(
-            'buildings',
-            'buildings.id',
-            '=',
-            'apartments.building_id'
-        )->select('apartments.*', 'buildings.name as building_name')->get();
+        // $apartments = Apartment::leftJoin(
+        //     'buildings',
+        //     'buildings.id',
+        //     '=',
+        //     'apartments.building_id'
+        // )->select('apartments.*', 'buildings.name as building_name')->get();
+        $apartments = Apartment::with('building')->get();
+        $apartments = Apartment::paginate(5);
         return view('apartments.index', [
             'apartments' => $apartments,
         ]);
@@ -36,7 +38,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+
         $apartent = new Apartment();
         $buildings = Building::all();
         return view(
@@ -56,7 +58,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->rules(), $this->messages());
         Apartment::create($request->all());
         return redirect()->route('apartments.index')
             ->with('done', 'تمت الاضافة بنجاح');
@@ -70,7 +72,6 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -81,12 +82,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
         $buildings = Building::all();
-        return view('apartments.edit', [
-            'apartment' => $apartment,
-            'buildings' => $buildings
-        ]);
+        return view(
+            'apartments.edit',
+            compact('apartment', 'buildings')
+        );
     }
 
     /**
@@ -98,9 +98,10 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        $data = $request->all();
-        $apartment->update($data);
-        return redirect()->route('apartments.index')->with('done', 'تمت الاضافة بنجاح');
+        $request->validate($this->rules(), $this->messages());
+        $apartment->update($request->all());
+        return redirect()->route('apartments.index')
+            ->with('done', 'تم التعديل  بنجاح');
     }
 
     /**
@@ -113,5 +114,23 @@ class ApartmentController extends Controller
     {
         $apartment->delete();
         return redirect()->back()->with('done', 'تم الحذف بنجاح');
+    }
+
+    protected function rules()
+    {
+        return [
+            'number' => ['required', 'unique:apartments', 'numeric'],
+            'owner' => ['required'],
+            'building_id' => ['required']
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            // 'owner.regex' => 'يجب ان يكون اسم',
+            'required' => 'هذا الحقل مطلوب',
+            'number.required' => 'رقم الشقة مطلوب',
+        ];
     }
 }

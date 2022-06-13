@@ -46,7 +46,7 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate($this->rules());
+        $request->validate($this->rules(), $this->messages());
         $image = $request->file('image');
         $data = $request->all();
         if ($request->hasFile('image')) {
@@ -82,7 +82,7 @@ class BuildingController extends Controller
     public function edit(Building $building)
     {
         //
-        
+
         return view('buildings.edit', ['building' => $building]);
     }
 
@@ -96,7 +96,7 @@ class BuildingController extends Controller
     public function update(Request $request, Building $building)
     {
         //
-        $request->validate($this->rules());
+        $request->validate($this->rules(), $this->messages());
         $image = $request->file('image');
         $data = $request->all();
         if ($request->hasFile('image')) {
@@ -133,7 +133,15 @@ class BuildingController extends Controller
     {
         return [
             'image' => ['nullable'],
-            'name' => ['required']
+            'name' => ['required'],
+            'address' => ['required']
+
+        ];
+    }
+    protected function messages()
+    {
+        return [
+            'name.required' => 'اسم البرج مطلوب',
         ];
     }
 }

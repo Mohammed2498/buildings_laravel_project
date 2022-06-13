@@ -8,6 +8,11 @@
             <div class="form-group mb-0">
                 <input value="{{ old('number', $apartment->number ?? '') }}" name="number" type="number"
                     class="form-control" name="inputText" id="inputText" placeholder=" رقم الشقة السكنية">
+                @error('number')
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -15,6 +20,11 @@
             <div class="form-group mb-0">
                 <input value="{{ old('owner', $apartment->owner ?? '') }}" name="owner" type="text"
                     class="form-control" name="inputText" id="inputText" placeholder="اسم المالك">
+                @error('owner')
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -28,6 +38,11 @@
                     </option>
                 @endforeach
             </select>
+            @error('building_id')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
     </div>
 </div>

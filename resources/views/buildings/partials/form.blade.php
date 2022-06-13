@@ -10,7 +10,7 @@
                 <input value="{{ old('name', $building->name ?? '') }}" name="name" type="text" class="form-control"
                     name="inputText" id="inputText" placeholder="اسم البرج السكني">
                 @error('name')
-                    <div class="invalid-feedback">
+                    <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
@@ -20,8 +20,12 @@
             <label for="description">الوصف</label>
             <div class="form-group mb-0">
                 <textarea value="{{ old('description', $building->description ?? '') }}" class="form-control" maxlength="225"
-                    rows="5" name="description" id="maxlength-textarea"
-                    placeholder="الحد الأقصى للوصف 130 حرف"></textarea>
+                    rows="5" name="description" id="maxlength-textarea" placeholder="الحد الأقصى للوصف 130 حرف"></textarea>
+                @error('description')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -29,6 +33,11 @@
             <div class="form-group mb-0">
                 <input value="{{ old('address', $building->address ?? '') }}" name="address" type="text"
                     class="form-control" name="inputText" id="inputText" placeholder="العنوان">
+                @error('address')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -36,6 +45,11 @@
             <div class="form-group mb-0">
                 <input value="{{ old('image', $building->image ?? '') }}" name="image" type="file"
                     class="form-control" name="inputText" id="inputText" placeholder=" اضافة صورة">
+                @error('image')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="card-body">
@@ -44,6 +58,11 @@
                 <input value="{{ old('apartments_number', $building->apartments_number ?? '') }}"
                     name="apartments_number" type="number" class="form-control" name="inputText" id="inputText"
                     placeholder="عدد الشقق">
+                @error('apartments_number')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
         </div>
         <!-- End col -->
