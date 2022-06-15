@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\BuildingController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,3 +46,8 @@ Route::group(
         Route::resource('apartments', ApartmentController::class);
     }
 );
+Route::group([
+    'prefix' => 'dashboard'
+], function () {
+    Route::resource('users', UserController::class);
+});

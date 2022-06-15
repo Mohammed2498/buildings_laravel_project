@@ -46,7 +46,7 @@ class ApartmentController extends Controller
             [
                 'apartment' => $apartent,
                 'buildings' => $buildings
-            ]
+            ] 
         );
     }
 
@@ -72,6 +72,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
+
     }
 
     /**
@@ -88,7 +89,6 @@ class ApartmentController extends Controller
             compact('apartment', 'buildings')
         );
     }
-
     /**
      * Update the specified resource in storage.
      *

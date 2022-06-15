@@ -203,7 +203,7 @@
                                     <li><a href="{{ route('apartments.index') }}"><img
                                                 src="{{ asset('assets/dashboard/images/svg-icon/charts.svg') }}"
                                                 class="img-fluid" alt="leads">الشقق</a></li>
-                                    <li><a href="crm-clients.html"><img
+                                    <li><a href="{{ route('users.index') }}"><img
                                                 src="{{ asset('assets/dashboard/images/svg-icon/customers.svg') }}"
                                                 class="img-fluid" alt="clients">العملاء</a></li>
                                 </ul>
