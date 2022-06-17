@@ -29,10 +29,10 @@ class BuildingController extends Controller
      */
     public function create()
     {
-        $buildings = Building::all();
+
         $building = new Building();
         return view('buildings.create', [
-            'buildings' => $buildings,
+
             'building' => $building
         ]);
     }

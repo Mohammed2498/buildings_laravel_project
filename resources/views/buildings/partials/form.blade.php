@@ -4,7 +4,6 @@
             <h5 class="card-title">اضافة برج سكني</h5>
         </div>
         <div class="card-body">
-
             <label for="name">الاسم</label>
             <div class="form-group mb-0">
                 <input value="{{ old('name', $building->name ?? '') }}" name="name" type="text" class="form-control"

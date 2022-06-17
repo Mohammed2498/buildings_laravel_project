@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules;
+
+
 
 class UserController extends Controller
 {
@@ -15,8 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
-        return view('users.index', compact('users'));
+        $users = User::with('profile')->get();
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -26,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();
+        return view('dashboard.users.create', compact('user'));
     }
 
     /**
@@ -37,7 +43,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $image = $request->file('image');
+        if ($request->hasFile('image')) {
+            $image_url = $image->store('users', 'public');
+            $user->image = $image_url;
+        }
+        $user->profile()->create([
+            'country' => $request->country,
+            'city' => $request->city,
+            'birthdate' => $request->birthdate,
+            'image' => $request->image,
+        ]);
+        return redirect()->route('users.index')
+            ->with('done', 'تم اضافة المستخدم');
     }
 
     /**
@@ -46,9 +74,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('dashboard.users.show', compact('user'));
     }
 
     /**
@@ -80,8 +108,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if (isset($user->image)) {
+            Storage::disk('public')->delete($user->image);
+        }
+        $user->delete();
+        return redirect()->route('users.index')
+            ->with('done', 'تم حذف المستخدم');
     }
 }
