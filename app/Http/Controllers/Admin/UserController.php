@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
-
-
 
 class UserController extends Controller
 {
@@ -55,14 +53,12 @@ class UserController extends Controller
         ]);
         $image = $request->file('image');
         if ($request->hasFile('image')) {
-            $image_url = $image->store('users', 'public');
-            $user->image = $image_url;
         }
         $user->profile()->create([
             'country' => $request->country,
             'city' => $request->city,
             'birthdate' => $request->birthdate,
-            'image' => $request->image,
+            'image' =>  $image_url = $image->store('users', 'public')
         ]);
         return redirect()->route('users.index')
             ->with('done', 'تم اضافة المستخدم');
