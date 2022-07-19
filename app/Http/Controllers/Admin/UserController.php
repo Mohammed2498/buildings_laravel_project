@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +58,7 @@ class UserController extends Controller
             'country' => $request->country,
             'city' => $request->city,
             'birthdate' => $request->birthdate,
-            'image' =>  $image_url = $image->store('users', 'public')
+            'image' => $image_url = $image->store('users', 'public')
         ]);
         return redirect()->route('users.index')
             ->with('done', 'تم اضافة المستخدم');
@@ -67,7 +67,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -78,7 +78,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -89,8 +89,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -101,7 +101,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
@@ -116,6 +116,6 @@ class UserController extends Controller
 
     public function testFunction()
     {
-
+        return "Hello";
     }
 }
