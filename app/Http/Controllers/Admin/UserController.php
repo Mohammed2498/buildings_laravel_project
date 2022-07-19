@@ -110,12 +110,14 @@ class UserController extends Controller
             Storage::disk('public')->delete($user->image);
         }
         $user->delete();
+        $userA = 0;
         return redirect()->route('users.index')
             ->with('done', 'تم حذف المستخدم');
     }
 
     public function testFunction()
     {
-        return "Hello";
+        return "Hello mohammed";
+
     }
 }
