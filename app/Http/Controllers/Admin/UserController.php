@@ -116,6 +116,7 @@ class UserController extends Controller
 
     public function testFunction()
     {
-        return "Hello";
+        return "Hello mohammed";
+
     }
 }
