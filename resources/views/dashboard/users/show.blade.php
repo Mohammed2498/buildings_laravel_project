@@ -12,7 +12,10 @@
             <div class="card-body py-5">
                 <div class="row">
                     <div class="col-lg-3 text-center">
-                        <img src="{{ asset('storage/' . $user->profile->image) }}" class="img-fluid mb-3" alt="user">
+                        @if ($user->profile->image)
+                            <img src="{{ asset('storage/' . $user->profile->image) }}" class="img-fluid mb-3 "
+                                alt="user">
+                        @endif
                     </div>
                     <div class="col-lg-9">
                         <h4>{{ $user->name }}</h4>
