@@ -56,5 +56,4 @@
     <script src="{{ asset('assets/dashboard/js/jquery.slimscroll.js') }}"></script>
     <!-- End js -->
 </body>
-
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.login')
+@extends('layouts.dashboard.log-register-info')
 @section('content')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

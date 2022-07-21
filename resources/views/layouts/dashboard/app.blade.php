@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/dashboard/css/switchery.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/dashboard/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/dashboard/css/icons.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/dashboard/css/flag-icon.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/dashboard/css/flag-icon.min.css') }}" rel="stylesheet" >
     <link href="{{ asset('assets/dashboard/css/style.css') }}" rel="stylesheet" type="text/css">
     <!-- End css -->
 </head>
