@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Middleware\CheckUserType;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,24 +17,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login1', function () {
-    return view('layouts.dashboard.login');
-});
+// Route::get('/login1', function () {
+//     return view('layouts.dashboard.login');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 require __DIR__ . '/auth.php';
+Route::get('/iskan', function () {
+    return view('front.home');
+})->name('home');
+
+
 
 Route::get('/', function () {
     return view('layouts.dashboard.app');
 });
 Route::group(
     [
-        'prefix' => 'dashboard'
+        'prefix' => 'dashboard',
+        'middleware' => ['auth', CheckUserType::class]
     ],
     function () {
+        Route::get('/', function () {
+            return view('layouts.dashboard.app');
+        })->name('dashboard');
         Route::resource('buildings', BuildingController::class);
     }
 );

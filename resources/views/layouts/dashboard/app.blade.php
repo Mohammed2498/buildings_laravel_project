@@ -686,6 +686,12 @@
                                         </div>
                                     </div>
                                 </li>
+                                <li class="list-inline-item">
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                </form>
+                            </li>
                             </ul>
                         </div>
                     </div>
