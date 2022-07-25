@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 require __DIR__ . '/auth.php';
+
+
 Route::get('/iskan', function () {
     return view('front.home');
 })->name('home');

@@ -18,8 +18,10 @@ class CheckUserType
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->type != 'admin') {
+            abort(403);
             return redirect()->route('home');
+
         }
-        abort(403);
+        return $next($request);
     }
 }
