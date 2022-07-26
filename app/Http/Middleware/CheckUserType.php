@@ -20,7 +20,6 @@ class CheckUserType
         if (Auth::user()->type != 'admin') {
             abort(403);
             return redirect()->route('home');
-
         }
         return $next($request);
     }

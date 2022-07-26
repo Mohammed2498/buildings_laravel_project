@@ -13,7 +13,7 @@
         <h4 class="text-primary my-4">تسجيل الدخول</h4>
         <!-- Email Address -->
         <div class="form-group">
-            <input name="email" type="email" class="form-control" id="email" placeholder="أدخل البريد الالكتروني"
+            <input name="login" type="text" class="form-control" id="login" placeholder="أدخل البريد الالكتروني"
                 required>
         </div>
         <!-- Password -->

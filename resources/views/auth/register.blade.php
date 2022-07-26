@@ -19,6 +19,10 @@
                 required="">
         </div>
         <div class="form-group">
+            <input name="username" type="text" class="form-control" id="username" placeholder="اسم المعرف"
+                required="">
+        </div>
+        <div class="form-group">
             <input name="password" type="password" class="form-control" id="password" placeholder="كلمة المرور"
                 required="">
         </div>
@@ -28,5 +32,5 @@
         </div>
         <button type="submit" class="btn btn-success btn-lg btn-block font-18">انشاء حساب</button>
     </form>
-    <p class="mb-0 mt-3">لديك حساب! <a href="{{route('login')}}">تسجيل الدخول</a></p>
+    <p class="mb-0 mt-3">لديك حساب! <a href="{{ route('login') }}">تسجيل الدخول</a></p>
 @endsection('content')
