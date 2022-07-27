@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->integer('number');
-            $table->string('owner');
+            $table->string('resident');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')
+                ->on('apartments')->nullable();
             $table->unsignedBigInteger('building_id');
             $table->foreign('building_id')->references('id')
                 ->on('buildings')->cascadeOnDelete();

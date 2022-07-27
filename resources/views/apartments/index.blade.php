@@ -7,6 +7,7 @@
     </a>
 @endsection
 @section('content')
+
     <div class="card-body">
         <h6 class="card-subtitle">جدول الأبراج السكنية في قطاع غزة</h6>
         @if (session()->has('success'))

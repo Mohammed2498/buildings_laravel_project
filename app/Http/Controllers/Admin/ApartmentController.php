@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Building;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
@@ -41,12 +42,14 @@ class ApartmentController extends Controller
 
         $apartent = new Apartment();
         $buildings = Building::all();
+        $users = User::all();
         return view(
             'apartments.create',
             [
                 'apartment' => $apartent,
-                'buildings' => $buildings
-            ] 
+                'buildings' => $buildings,
+                'users' => $users
+            ]
         );
     }
 
@@ -72,7 +75,6 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -83,10 +85,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        $users = User::all();
         $buildings = Building::all();
         return view(
             'apartments.edit',
-            compact('apartment', 'buildings')
+            compact('apartment', 'buildings', 'users')
         );
     }
     /**
@@ -121,7 +124,8 @@ class ApartmentController extends Controller
         return [
             'number' => ['required', 'unique:apartments', 'numeric'],
             'owner' => ['required'],
-            'building_id' => ['required']
+            'building_id' => ['required'],
+            // 'user_id' => ['required']
         ];
     }
 

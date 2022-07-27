@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.log-register-info')
 @section('content')
     <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -17,7 +17,13 @@
         <div class="form-group">
             <input name="email" type="email" class="form-control" id="email" placeholder="البريد الالكتروني"
                 required="">
+            @error('email')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
+
         <div class="form-group">
             <input name="username" type="text" class="form-control" id="username" placeholder="اسم المعرف"
                 required="">

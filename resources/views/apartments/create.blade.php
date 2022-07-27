@@ -1,6 +1,5 @@
 @extends('layouts.dashboard.app')
 @section('page_title', 'الشقق السكنية')
-
 @section('content')
     <div class="col-lg-10">
         <div class="card m-b-30">
